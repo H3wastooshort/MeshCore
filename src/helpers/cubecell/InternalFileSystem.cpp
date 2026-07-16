@@ -25,10 +25,10 @@ static int _internal_flash_sync(const struct lfs_config *c) {
 
 static struct lfs_config _InternalFSConfig = {
     .context = NULL, 
-    .read = _internal_flash_read,
-    .prog = _internal_flash_prog,
-    .erase = _internal_flash_erase,
-    .sync = _internal_flash_sync,
+    .read = &_internal_flash_read,
+    .prog = &_internal_flash_prog,
+    .erase = &_internal_flash_erase,
+    .sync = &_internal_flash_sync,
     .read_size = EEPROM_RWSIZE,
     .prog_size = EEPROM_RWSIZE,
     .block_size = (EEPROM_RWSIZE * (EEPROM_PAGESIZE/EEPROM_RWSIZE)),
