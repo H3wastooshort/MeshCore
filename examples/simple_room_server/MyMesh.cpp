@@ -806,7 +806,7 @@ void MyMesh::setTxPower(int8_t power_dbm) {
 }
 
 void MyMesh::saveIdentity(const mesh::LocalIdentity &new_id) {
-#if defined(NRF52_PLATFORM) || defined(STM32_PLATFORM)
+#if defined(NRF52_PLATFORM) || defined(STM32_PLATFORM) || defined(CUBECELL_PLATFORM)
   IdentityStore store(*_fs, "");
 #elif defined(ESP32)
   IdentityStore store(*_fs, "/identity");

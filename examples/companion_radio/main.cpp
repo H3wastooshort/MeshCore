@@ -12,7 +12,7 @@ static uint32_t _atoi(const char* sp) {
   return n;
 }
 
-#if defined(NRF52_PLATFORM) || defined(STM32_PLATFORM)
+#if defined(NRF52_PLATFORM) || defined(STM32_PLATFORM) || defined(CUBECELL_PLATFORM) || defined(CUBECELL_PLATFORM)
   #include <InternalFileSystem.h>
   #if defined(QSPIFLASH)
     #include <CustomLFS_QSPIFlash.h>
@@ -133,7 +133,7 @@ void setup() {
 
   fast_rng.begin(radio_driver.getRngSeed());
 
-#if defined(NRF52_PLATFORM) || defined(STM32_PLATFORM)
+#if defined(NRF52_PLATFORM) || defined(STM32_PLATFORM) || defined(CUBECELL_PLATFORM)
   InternalFS.begin();
   #if defined(QSPIFLASH)
     if (!QSPIFlash.begin()) {

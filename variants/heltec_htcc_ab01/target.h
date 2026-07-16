@@ -7,6 +7,7 @@
 #include <helpers/radiolib/CustomSX1262Wrapper.h>
 #include <helpers/radiolib/RadioLibWrappers.h>
 #include <helpers/cubecell/CubeCellBoard.h>
+#include <helpers/AutoDiscoverRTCClock.h>
 
 //divider 10K to 1K => ratio 1/10
 #define ADC_MULTIPLIER ((10*1)/1)
@@ -20,7 +21,7 @@ class HTCCAB01Board : public CubeCellBoard
         CubeCellBoard::begin();
     }
 
-    const char *getManufacturerName() const override { return "Tiny Relay"; }
+    const char *getManufacturerName() const override { return "Heltec HTCC-AB01"; }
 
     uint16_t getBattMilliVolts() override
     {
@@ -35,7 +36,7 @@ class HTCCAB01Board : public CubeCellBoard
 
 extern HTCCAB01Board board;
 extern WRAPPER_CLASS radio_driver;
-extern VolatileRTCClock rtc_clock;
+extern AutoDiscoverRTCClock rtc_clock;
 extern SensorManager sensors;
 
 bool radio_init();

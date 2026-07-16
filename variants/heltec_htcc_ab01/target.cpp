@@ -14,16 +14,15 @@ HTCCAB01Board board;
 
 WRAPPER_CLASS radio_driver(radio, board);
 
-VolatileRTCClock rtc_clock;
+VolatileRTCClock fallback_clock;
+AutoDiscoverRTCClock rtc_clock(fallback_clock);
 SensorManager sensors;
 
-#ifndef LORA_TX_POWER
-#define LORA_TX_POWER 22
-#endif
+
 
 bool radio_init()
 {
-    //  rtc_clock.begin(Wire);
+  rtc_clock.begin(Wire);
 
 #if defined(P_LORA_SCLK)
   spi.begin(P_LORA_SCLK, P_LORA_MISO, P_LORA_MOSI);

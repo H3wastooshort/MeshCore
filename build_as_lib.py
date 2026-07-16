@@ -18,6 +18,8 @@ for item in menv.get("CPPDEFINES", []):
     # PLATFORM HANDLING
     if item == "STM32_PLATFORM":
         src_filter.append("+<helpers/stm32/*>")
+    if item == "CUBECELL_PLATFORM":
+        src_filter.append("+<helpers/cubecell/*>")
     elif item == "ESP32":
         src_filter.append("+<helpers/esp32/*>")
     elif item == "NRF52_PLATFORM":
