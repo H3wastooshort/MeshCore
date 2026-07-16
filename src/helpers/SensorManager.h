@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef nullptr
+#undef nullptr
+#endif
+
 #include <CayenneLPP.h>
 #include "sensors/LocationProvider.h"
 

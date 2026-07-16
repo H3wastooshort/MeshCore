@@ -3,7 +3,8 @@
 #include <helpers/ArduinoHelpers.h>
 
 #if defined(P_LORA_SCLK)
-  static SPIClass spi;
+  //static SPIClass spi; //TODO fix
+  #define spi SPI
   RADIO_CLASS radio = new Module(P_LORA_NSS, P_LORA_DIO_1, P_LORA_RESET, P_LORA_BUSY, spi);
 #else
   RADIO_CLASS radio = new Module(P_LORA_NSS, P_LORA_DIO_1, P_LORA_RESET, P_LORA_BUSY);
@@ -16,10 +17,6 @@ WRAPPER_CLASS radio_driver(radio, board);
 
 VolatileRTCClock rtc_clock;
 SensorManager sensors;
-
-#ifndef LORA_CR
-#define LORA_CR 5
-#endif
 
 #ifndef LORA_TX_POWER
 #define LORA_TX_POWER 22
@@ -35,11 +32,6 @@ bool radio_init()
 #else
   return radio.std_init();
 #endif
-    if (status != RADIOLIB_ERR_NONE) {
-        Serial.print("ERROR: radio init failed: ");
-        Serial.println(status);
-        return false; // fail
-    }
 
 #ifdef RX_BOOSTED_GAIN
     radio.setRxBoostedGainMode(RX_BOOSTED_GAIN);

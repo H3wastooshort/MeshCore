@@ -8,7 +8,6 @@
 #include <helpers/radiolib/RadioLibWrappers.h>
 #include <helpers/cubecell/CubeCellBoard.h>
 
-#define PIN_VBAT_READ A0
 #define ADC_MULTIPLIER (5 * 1.73 * 1000)
 
 class HTCCAB01Board : public CubeCellBoard
@@ -23,7 +22,6 @@ class HTCCAB01Board : public CubeCellBoard
 
     uint16_t getBattMilliVolts() override
     {
-        analogReadResolution(12);
         uint32_t raw = 0;
         for (int i = 0; i < 8; i++) {
             raw += analogRead(PIN_VBAT_READ);
