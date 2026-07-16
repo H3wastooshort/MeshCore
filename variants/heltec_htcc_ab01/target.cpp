@@ -3,7 +3,6 @@
 #include <helpers/ArduinoHelpers.h>
 
 #if defined(P_LORA_SCLK)
-  //static SPIClass spi; //TODO fix
   #define spi SPI
   RADIO_CLASS radio = new Module(P_LORA_NSS, P_LORA_DIO_1, P_LORA_RESET, P_LORA_BUSY, spi);
 #else

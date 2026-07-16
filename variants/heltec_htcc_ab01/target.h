@@ -8,7 +8,9 @@
 #include <helpers/radiolib/RadioLibWrappers.h>
 #include <helpers/cubecell/CubeCellBoard.h>
 
-#define ADC_MULTIPLIER (5 * 1.73 * 1000)
+//divider 10K to 1K => ratio 1/10
+#define ADC_MULTIPLIER ((10*1)/1)
+#define ADC_AVG_COUNT 8
 
 class HTCCAB01Board : public CubeCellBoard
 {
@@ -22,11 +24,11 @@ class HTCCAB01Board : public CubeCellBoard
 
     uint16_t getBattMilliVolts() override
     {
-        uint32_t raw = 0;
-        for (int i = 0; i < 8; i++) {
-            raw += analogRead(PIN_VBAT_READ);
+        float raw = 0;
+        for (int i = 0; i < ADC_AVG_COUNT; i++) {
+            raw += analogReadmV(PIN_VBAT_READ);
         }
-        return ((double)raw) * ADC_MULTIPLIER / 8 / 4096;
+        return ((double)raw) * ADC_MULTIPLIER / ADC_AVG_COUNT;
     }
 
 };
