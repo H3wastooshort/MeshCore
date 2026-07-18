@@ -1,4 +1,5 @@
 #include "IdentityStore.h"
+#include <cstdio>
 
 bool IdentityStore::load(const char *name, mesh::LocalIdentity& id) {
   bool loaded = false;
