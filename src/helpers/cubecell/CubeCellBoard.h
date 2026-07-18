@@ -10,6 +10,8 @@ protected:
 public:
   virtual void begin() {
     startup_reason = BD_STARTUP_NORMAL;
+    pinMode(PIN_ANT_ENABLE,OUTPUT);
+    digitalWrite(PIN_ANT_ENABLE,1);
   }
 
   uint8_t getStartupReason() const override { return startup_reason; }
@@ -33,9 +35,11 @@ public:
 #if defined(P_LORA_TX_LED)
   void onBeforeTransmit() override {
     digitalWrite(P_LORA_TX_LED, LOW);   // turn TX LED on
+    //digitalWrite(PIN_ANT_ENABLE,1);
   }
   void onAfterTransmit() override {
     digitalWrite(P_LORA_TX_LED, HIGH);   // turn TX LED off
+    //digitalWrite(PIN_ANT_ENABLE,0);
   }
 #endif
 
