@@ -11,6 +11,7 @@
 #else
   #define EEPROM_BASE FLASH_BASE+0x7400
   #define EEPROM_SIZE 0xC00
+  #define EEPROM_PAGESIZE 256
 #endif
 
 #define EEPROM_RWSIZE 8
