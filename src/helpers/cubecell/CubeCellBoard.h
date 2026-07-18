@@ -15,7 +15,7 @@ public:
   uint8_t getStartupReason() const override { return startup_reason; }
 
   uint16_t getBattMilliVolts() override {
-    return 0;  // not supported
+    return getBatteryVoltage();  // not supported
   }
 
   const char* getManufacturerName() const override {
